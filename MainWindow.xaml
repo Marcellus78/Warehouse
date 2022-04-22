@@ -11,16 +11,34 @@
         <CollectionViewSource x:Key="categoryToolsViewSource"
                               Source="{Binding Tools, Source={StaticResource categoryViewSource}}"/>
     </Window.Resources>
-    <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="False"
+    <Grid>
+        <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="False"
               EnableRowVirtualization="True"
               ItemsSource="{Binding Source={StaticResource categoryViewSource}}"
               Margin="13,13,43,229" RowDetailsVisibilityMode="VisibleWhenSelected">
-        <DataGrid.Columns>
-            <DataGridTextColumn Binding="{Binding CategoryId}"
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CategoryId}"
                                 Header="Category Id" Width="SizeToHeader"
                                 IsReadOnly="True"/>
-            <DataGridTextColumn Binding="{Binding CategoryName}" Header="Name"
+                <DataGridTextColumn Binding="{Binding CategoryName}" Header="Name"
                                 Width="*"/>
-        </DataGrid.Columns>
-    </DataGrid>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="toolssDataGrid" AutoGenerateColumns="False" 
+          EnableRowVirtualization="True" 
+          ItemsSource="{Binding Source={StaticResource categoryToolsViewSource}}" 
+          Margin="13,205,43,108" RowDetailsVisibilityMode="VisibleWhenSelected" 
+          RenderTransformOrigin="0.488,0.251">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CategoryId}" 
+                            Header="Category Id" Width="SizeToHeader"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding ProductId}" Header="Product Id" 
+                            Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Save" HorizontalAlignment="Center" Margin="0,240,0,0" 
+                Click="Button_Click" Height="20" Width="123"/>
+    </Grid>
 </Window>
