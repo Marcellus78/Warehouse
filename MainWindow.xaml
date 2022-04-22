@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Magazyn"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="categoryViewSource"/>
         <CollectionViewSource x:Key="categoryToolsViewSource"
@@ -24,7 +24,7 @@
                                 Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="toolssDataGrid" AutoGenerateColumns="False" 
+        <DataGrid x:Name="toolsDataGrid" AutoGenerateColumns="False" 
           EnableRowVirtualization="True" 
           ItemsSource="{Binding Source={StaticResource categoryToolsViewSource}}" 
           Margin="13,205,43,108" RowDetailsVisibilityMode="VisibleWhenSelected" 
