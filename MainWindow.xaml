@@ -39,8 +39,10 @@
                 <DataGridTextColumn Binding="{Binding ToolName}" Header="Name" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Save" HorizontalAlignment="Center" Margin="0,240,0,0" 
-        Click="Button_Click" Height="20" Width="123"/>
+        <Button Content="Save" HorizontalAlignment="Center" Margin="0,360,0,0" 
+                Click="Button_Click" Height="20" Width="124"/>
+        <Button x:Name="DrillButton" Content="Wiertarki" Margin="172,385,504,25"
+                 Height="20" Width="124" Click="DrillButton_Click"/>
     </Grid>
 </Window>
 

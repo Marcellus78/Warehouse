@@ -3,12 +3,11 @@ using System.Windows;
 using System.Windows.Data;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using Magazyn.Entities;
 
 namespace Magazyn
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
 
@@ -30,11 +29,9 @@ namespace Magazyn
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // all changes are automatically tracked, including
-            // deletes!
+
             context.SaveChanges();
 
-            // this forces the grid to refresh to latest values
             categoryDataGrid.Items.Refresh();
             toolsDataGrid.Items.Refresh();
         }
@@ -44,6 +41,12 @@ namespace Magazyn
             // clean up database connections
             context.Dispose();
             base.OnClosing(e);
+        }
+
+        private void DrillButton_Click(object sender, RoutedEventArgs e)
+        {
+            Category selectedCategory = categoryDataGrid.SelectedItem as Category;
+            MessageBox.Show(selectedCategory.CategoryName.ToString());
         }
     }
 }
