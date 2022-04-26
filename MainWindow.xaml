@@ -8,20 +8,20 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
         <CollectionViewSource x:Key="categoryViewSource"/>
-        <CollectionViewSource x:Key="categoryToolsViewSource"
+        <CollectionViewSource x:Key="categoryToolsViewSource" 
                               Source="{Binding Tools, Source={StaticResource categoryViewSource}}"/>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="False"
-              EnableRowVirtualization="True"
-              ItemsSource="{Binding Source={StaticResource categoryViewSource}}"
-              Margin="13,13,43,229" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="False" 
+          EnableRowVirtualization="True" 
+          ItemsSource="{Binding Source={StaticResource categoryViewSource}}" 
+          Margin="13,13,43,229" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding CategoryId}"
-                                Header="Category Id" Width="SizeToHeader"
-                                IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding CategoryName}" Header="Name"
-                                Width="*"/>
+                            Header="Category Id" Width="SizeToHeader"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding CategoryName}" Header="Name" 
+                            Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="toolsDataGrid" AutoGenerateColumns="False" 
@@ -33,12 +33,14 @@
                 <DataGridTextColumn Binding="{Binding CategoryId}" 
                             Header="Category Id" Width="SizeToHeader"
                             IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding ProductId}" Header="Product Id" 
+                <DataGridTextColumn Binding="{Binding ToolId}" Header="Product Id" 
                             Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding RecordNumber}" Header="Number" Width="*"/>
+                <DataGridTextColumn Binding="{Binding ToolName}" Header="Name" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Save" HorizontalAlignment="Center" Margin="0,240,0,0" 
-                Click="Button_Click" Height="20" Width="123"/>
+        Click="Button_Click" Height="20" Width="123"/>
     </Grid>
 </Window>
+

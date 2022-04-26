@@ -11,7 +11,6 @@ namespace Magazyn.Context
     class ToolContext : DbContext
     {
         public DbSet<Tool> Tools { get; set; }
-        public DbSet<Producent> Producents { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnConfiguring(
