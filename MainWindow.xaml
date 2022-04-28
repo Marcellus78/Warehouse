@@ -7,42 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
-        <CollectionViewSource x:Key="categoryViewSource"/>
-        <CollectionViewSource x:Key="categoryToolsViewSource" 
-                              Source="{Binding Tools, Source={StaticResource categoryViewSource}}"/>
+        <CollectionViewSource x:Key="categoryToolsViewSource"/>
     </Window.Resources>
     <Grid>
-        <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="False" 
-          EnableRowVirtualization="True" 
-          ItemsSource="{Binding Source={StaticResource categoryViewSource}}" 
-          Margin="13,13,43,229" RowDetailsVisibilityMode="VisibleWhenSelected">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding CategoryId}"
-                            Header="Category Id" Width="SizeToHeader"
-                            IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding CategoryName}" Header="Name" 
-                            Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
         <DataGrid x:Name="toolsDataGrid" AutoGenerateColumns="False" 
           EnableRowVirtualization="True" 
           ItemsSource="{Binding Source={StaticResource categoryToolsViewSource}}" 
-          Margin="13,205,43,108" RowDetailsVisibilityMode="VisibleWhenSelected" 
+          Margin="10,10,10,108" RowDetailsVisibilityMode="VisibleWhenSelected" 
           RenderTransformOrigin="0.488,0.251">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding CategoryId}" 
+                <!--<DataGridTextColumn Binding="{Binding CategoryId}" 
                             Header="Category Id" Width="SizeToHeader"
-                            IsReadOnly="True"/>
+                            IsReadOnly="False"/>-->
+                <DataGridComboBoxColumn x:Name="categoryName" Header="Kategoria"
+                                        SelectedItemBinding="{Binding Category}"
+                                        SelectedValuePath="CategoryId"
+                                        DisplayMemberPath="CategoryName"/>
                 <DataGridTextColumn Binding="{Binding ToolId}" Header="Product Id" 
-                            Width="SizeToHeader" IsReadOnly="True"/>
+                            Width="SizeToHeader" IsReadOnly="False"/>
                 <DataGridTextColumn Binding="{Binding RecordNumber}" Header="Number" Width="*"/>
                 <DataGridTextColumn Binding="{Binding ToolName}" Header="Name" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Save" HorizontalAlignment="Center" Margin="0,360,0,0" 
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="50">
+            <Button Content="Save" 
                 Click="Button_Click" Height="20" Width="124"/>
-        <Button x:Name="DrillButton" Content="Wiertarki" Margin="172,385,504,25"
-                 Height="20" Width="124" Click="DrillButton_Click"/>
+            <Button x:Name="DrillButton" Content="Wiertarki" 
+                    Height="20" Width="124" Click="DrillButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
 

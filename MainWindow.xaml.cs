@@ -4,6 +4,8 @@ using System.Windows.Data;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using Magazyn.Entities;
+using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Magazyn
 {
@@ -12,27 +14,33 @@ namespace Magazyn
     {
 
         private readonly ToolContext context = new ToolContext();
-        private CollectionViewSource categoryViewSource;
+        private CollectionViewSource categoryToolsViewSource;
+        
         public MainWindow()
         {
             InitializeComponent();
-            categoryViewSource =
-                (CollectionViewSource)FindResource(nameof(categoryViewSource));
+            categoryToolsViewSource =
+                (CollectionViewSource)FindResource(nameof(categoryToolsViewSource));
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             context.Database.EnsureCreated();
+            context.Tools.Load();
             context.Categories.Load();
-            categoryViewSource.Source =
-                context.Categories.Local.ToObservableCollection();
+
+            categoryToolsViewSource.Source =
+                context.Tools.Local.ToObservableCollection();
+
+            ObservableCollection<Category> categories = context.Categories.Local.ToObservableCollection();
+            categoryName.ItemsSource = categories;
+
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             context.SaveChanges();
-
-            categoryDataGrid.Items.Refresh();
             toolsDataGrid.Items.Refresh();
         }
 
@@ -45,8 +53,9 @@ namespace Magazyn
 
         private void DrillButton_Click(object sender, RoutedEventArgs e)
         {
-            Category selectedCategory = categoryDataGrid.SelectedItem as Category;
-            MessageBox.Show(selectedCategory.CategoryName.ToString());
+            //Category selectedCategory = categoryDataGrid.SelectedItem as Category;
+            //MessageBox.Show(selectedCategory.CategoryName.ToString());
         }
+            
     }
 }
